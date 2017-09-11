@@ -1,0 +1,9 @@
+body{
+    background-color: #cccccc;
+    font-family: Arial,helvetica,sans-serif;
+}
+
+.bookHeadline{
+    font-size: 15pt;
+    font-weight: bold;
+}
