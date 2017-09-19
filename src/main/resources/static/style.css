@@ -7,3 +7,10 @@ body{
     font-size: 15pt;
     font-weight: bold;
 }
+.bookDescription {
+    font-size: 10pt;
+}
+
+label {
+    font-weight: bold;
+}

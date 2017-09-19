@@ -1,5 +1,6 @@
 package readinglist;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +13,10 @@ import java.util.List;
  * Created by guoruirui on 2017/9/11.
  */
 @Controller
-@RequestMapping("/readingList")
+@RequestMapping("/")
 public class ReadingListController {
+
+    private AmazonProperties amazonProperties;
 
     private ReadingListRepository readingListRepository;
 
@@ -26,14 +29,16 @@ public class ReadingListController {
         List<Book> readingList = readingListRepository.findByReader(reader);
         if(readingList != null){
             model.addAttribute("books", readingList);
+            model.addAttribute("reader", reader);
+            model.addAttribute("amazonID", amazonProperties.getAssociateId());
         }
         return "readingList";
     }
 
-    @RequestMapping(value = "/(reader)", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String addReadingList(@PathVariable("reader") String reader, Book book){
         book.setReader(reader);
         readingListRepository.save(book);
-        return "redirect:/readingList/(reader)";
+        return "redirect:/";
     }
 }
