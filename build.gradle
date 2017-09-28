@@ -3,6 +3,7 @@ buildscript {
 		springBootVersion = '1.5.6.RELEASE'
 	}
 	repositories {
+		maven{url "http://repo.spring.io/milestone"}
 		mavenCentral()
 	}
 	dependencies {
@@ -12,15 +13,17 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
+	maven{url "http://repo.spring.io/milestone"}
 	mavenCentral()
 }
-
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -29,15 +32,17 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-configuration-processor')
+	//compile('org.springframework.boot:spring-boot-start-log4j')
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	runtime('org.postgresql:postgresql')
 	runtime('com.microsoft.sqlserver:mssql-jdbc')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('org.springframework.security:spring-security-test')
-	optional ('org.springframework.boot:spring-boot-configuration-processor')
+	//testCompile('org.springframework.security:spring-security-test')
+
 }
 
-compileJava.dependsOn(processResources)
+
 
 
